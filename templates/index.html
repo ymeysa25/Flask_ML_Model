@@ -1,175 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Sentyment Analysis</title>
-  <meta content="" name="descriptison">
-  <meta content="" name="keywords">
-  <script src='main.js'></script>
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="{{ url_for('static', filename = 'vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ url_for('static', filename = 'vendor/icofont/icofont.min.css')}}" rel="stylesheet">
-  <link href="{{ url_for('static', filename = 'vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-  <link href="{{ url_for('static', filename = 'vendor/remixicon/remixicon.css')}}" rel="stylesheet">
-  <link href="{{ url_for('static', filename = 'vendor/venobox/venobox.css')}}" rel="stylesheet')}}">
-  <link href="{{ url_for('static', filename = 'vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
-  <link href="{{ url_for('static', filename = 'vendor/aos/aos.css" rel="stylesheet')}}">
-
-  <!-- Template Main CSS File -->
-  <link href="{{ url_for('static', filename = 'css/style.css')}}" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: OnePage - v2.1.0
-  * Template URL: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Sentimen Classification</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
 </head>
 
+<style>
+    .container {
+        height: 480px;
+        position: relative;
+        border: 3px solid green;
+    }
+
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
+<script>
+    // Get Data from flask
+    var data = { { data } }
+</script>
 <body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
-
-      <h1 class="logo mr-auto"><a href="index.html">Aplikasi <br>Sentiment Analysis</a></h1>
-      
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-    </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
-      <div class="row justify-content-center">
-        <div class="col-xl-7 col-lg-9 text-center">
-          <h1>SENTIMENT ANALYSIS</h1>
-          <h2>Analisis sentimen, yang disebut juga dengan opinion mining, merupakan salah satu cabang ilmu dari data mining yang bertujuan untuk menganalisis, memahami, mengolah, dan mengekstrak data tekstual yang berupa opini terhadap entitas seperti produk, servis, organisasi, individu, dan topik tertentu</h2>
-        </div>
-      </div>
-      <div class="text-center">
-        <a href="#about" class="btn-get-started scrollto">Mulai Aplikasi</a>
-      </div>    
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container" >
-        <div class="section-title" data-aos="fade-up" data-aos-delay="100">
-          <h2>Mengenai Aplikasi</h2>
-          <p>Pada aplikasi ini, Sentiment Analysis dilakukan dengan klasifikasi komentar pada review sebuah aplikasi, produk maupun jasa yang dibedakan menjadi komentar POSITIF ataupun NEGATIF. Klasifikasi dilakukan dengan menggunakan Algoritma Support Vector Mahine (SVM) dengan Kernel Linear.</p>
-        </div>
-        <div class="text-center">
-            <a href="#klasifikasikomentar" class="btn btn-outline-info btn-lg scrollto">Klasifikasi Komentar</a>
-            <a href="#klasifikasifile" class="btn btn-outline-info btn-lg scrollto">Klasifikasi File Komentar</a>
-        </div>
-      </div>
-    </section><!-- End About Section -->
-       
-    <!-- ======= Cta Section ======= -->
-    <section id="klasifikasikomentar" class="cta">
-      <div class="section-title" data-aos="fade-up" data-aos-delay="100">
-        <div class="text-center">
-          <h3 class= "mb-3">KLASIFIKASI KOMENTAR</h3>
-          <div class="container">
-            <form method="POST" role="form" class="php-email-form">
-              <div class="form-group">
-                
-                <textarea id="text" class="form-control text-center" name="text" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Tuliskan komentar"></textarea>
-                <!-- kodignanmu<input type="text" id="text" name="text"> -->
-                
-                <input type="submit" value="Submit">
-                <!-- kodinganmu<input type="submit" value="Klasifikasi" class="cta-btn scrollto" href="#"> -->
-              
-              </div>
+    <div class="container">
+        <div class="center">
+            <!-- bagian klasifikasi per kalimat -->
+            <form method="POST">
+                <input name="text" /> <br>
+                <button>Submit</button>
+    
+                 <!-- Hasil prediksi -->
+                <center><label>{{data}}</label></center> <br> <br>
+            </form>    
+            
+            <!-- Bagian untuk upload file -->
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type = "file" name = "file" /> <br> <br>
+                <button>Upload File</button>
             </form>
-            <script>
-              // Get Data from flask
-              var data = { {data} }
-            </script>
-            <!-- Show result -->
-            <label>{{data}}</label>
-          </div>
         </div>
-      </div>
-    </section><!-- End Cta Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="klasifikasifile" class="contact">
-      <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h2>KLASIFIKASI FILE KOMENTAR</h2>
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-            <div class="form-group">
-              <textarea class="form-control text-center" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Masukan File"></textarea>
-              <div class="validate"></div>
-            </div>
-          </form>
-          </div>
-          <div class="text-center">
-            <a href="#cta" class="btn btn-outline-info btn-lg scrollto" name="submit">Klasifikasi File Komentar</a>    
-          </div>
-        </div>
-      </div>
-    </section><!-- End Contact Section -->
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-
-    <div class="container d-md-flex py-4">
-
-      <div class="mr-md-auto text-center text-md-left">
-        <div class="copyright">
-          <strong>Tugas Akhir</strong><br> <strong><span>"Implementasi Algoritma Support Vector Machine (SVM) untuk Analisa Klasifikasi Sentimen Komentar"</span></strong>
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/ -->
-          Ilham Putra Arifa - 21120116140081</a><br>
-          UNIVERSITAS DIPONEGORO</a>
-        </div>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
- 
-  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="{{ url_for('static', filename = 'vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{ url_for('static', filename = 'vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{ url_for('static', filename = 'vendor/jquery.easing/jquery.easing.min.js')}}"></script>
-  <script src="{{ url_for('static', filename = 'vendor/php-email-form/validate.js')}}"></script>
-  <script src="{{ url_for('static', filename = 'vendor/waypoints/jquery.waypoints.min.js')}}"></script>
-  <script src="{{ url_for('static', filename = 'vendor/counterup/counterup.min.js')}}"></script>
-  <script src="{{ url_for('static', filename = 'vendor/venobox/venobox.min.js')}}"></script>
-  <script src="{{ url_for('static', filename = 'vendor/owl.carousel/owl.carousel.min.js')}}"></script>
-  <script src="{{ url_for('static', filename = 'vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-  <script src="{{ url_for('static', filename = 'vendor/aos/aos.js')}}"></script>
-
-  <!-- Template Main JS File -->
-  <script src="{{ url_for('static', filename = 'js/main.js')}}"></script>
+    </div>    
 
 </body>
-
 </html>

@@ -1,20 +1,23 @@
 from flask import Flask,request, render_template
-import joblib
+import pickle
+import numpy as np
 from io import TextIOWrapper
 import csv
-import numpy as np
 
-app = Flask(__name__, template_folder='templates')
 
-# Load Model
-model = joblib.load('Text_classificationfix.txt')
+app = Flask(__name__)
 
-#declare label
-labels = ['POSITIF', 'NEGATIF']
 
-values = [ 56, 77]
+#Deklarasi label
+labels = ['NEGATIF', 'POSITIF']
 
-colors = ["#F7464A", "#46BFBD"]
+#load model
+with open(r"svm.pickle", "rb") as input_file:
+    model = pickle.load(input_file)
+
+@app.route("/")
+def my_app():
+    return render_template("index.html")
 
 def count_element(seq) -> dict:
     hist = {}
@@ -22,12 +25,6 @@ def count_element(seq) -> dict:
         hist[i] = hist.get(i, 0)+1
     return hist
 
-
-#Route home
-@app.route("/")
-def my_form():
-    # template HTML
-    return render_template("index.html")
 
 #Route home when submit form from html
 @app.route('/', methods=['GET', 'POST'])
@@ -38,16 +35,17 @@ def my_form_post():
 
         #Predict text
         predicted = model.predict([text])[0]
+
     
     #send predicted to HTML
     return render_template("index.html", data = labels[predicted])
 
 
-@app.route('/upload',methods = ['POST'])
+@app.route('/upload', methods = ['GET', 'POST'])
 def upload_csv():
     data_test = []
     if request.method == 'POST':
-        csv_file = request.files['fileupload']
+        csv_file = request.files['file']
         csv_file = TextIOWrapper(csv_file, encoding='utf-8')
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
@@ -65,7 +63,9 @@ def upload_csv():
     bar_values= list(hasil.values())
     bar_labels= labels
 
+    # bar_values = [100,50]
+
     return render_template('bar_chart.html', title='SVM Predicted Result', max=max(bar_values) + 20, labels=bar_labels, values=bar_values)
-#run app
+
 if __name__ == "__main__":
     app.run(debug=True)
